@@ -13,8 +13,12 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import sys
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# 追加导包路径
+sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -37,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'contents',
+    # verifications可以不注册，因为不迁移和没有模板
+    'verifications',
 ]
 
 MIDDLEWARE = [
@@ -93,9 +101,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', # 数据库引擎
         'HOST': '192.168.206.134', # 数据库主机
         'PORT': 3306, # 数据库端口
-        'USER': 'Hillary886', # 数据库用户名
-        'PASSWORD': 'x56939980', # 数据库用户密码
-        'NAME': 'meiduo' # 数据库名字
+        'USER': 'root', # 数据库用户名
+        'PASSWORD': 'mysql', # 数据库用户密码
+        'NAME': 'meiduo1' # 数据库名字
     }
 }
 # 配置redis缓存数据库
@@ -225,3 +233,22 @@ LOGGING = {
         },
     }
 }
+
+# Haystack
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.elasticsearch_backend.ElasticsearchSearchEngine',
+        'URL': 'http://192.168.206.134:9200/', # Elasticsearch服务器ip地址，端口号固定为9200
+        'INDEX_NAME': 'meiduo_mall', # Elasticsearch建立的索引库的名称
+    },
+}
+
+# 指定自定义的用户模型类：值语法==>'子应用.用户模型类'
+AUTH_USER_MODEL = 'users.User'
+
+# 当添加、修改、删除数据时，自动生成索引
+HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+# haystack分页时每页记录所对应的条数
+HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
+

@@ -1,7 +1,7 @@
 //我们采用的是ES6的语法方式
 //创建vue对象
 let vm = new Vue({
-    //通过ID选择器找到绑定的html内容
+    //第一步：通过ID选择器找到绑定的html内容
     el:'#app' ,
     //修改vue读取的语法
     delimiters:['[[',']]'],
@@ -46,6 +46,7 @@ let vm = new Vue({
             }
             this.send_flag==true; //如果可以进入到厕所，立刻关门
             //校验数据：mobile,image_code
+            //需要进行校验，因为之前都进行了校验，没校验之前的无法发送短信验证码
             this.check_mobile();
             this.check_image_code();
             if (this.error_mobile==true||this.error_image_code==true){
@@ -61,6 +62,7 @@ let vm = new Vue({
                         //展示倒计时60秒效果
                         // setInterval('回调函数','时间间隔(单位为毫秒)')
                         let num=60;
+                        //t是倒计时器的编号
                         let t=setInterval(()=>{
                             if(num==1){
                                 //倒计时即将结束
@@ -107,7 +109,7 @@ let vm = new Vue({
                 this.error_name = true;
             }
             //判断用户名是否重复注册
-            //只有当用户输入的用户名满足条件才会去判断
+            //只有当用户输入的用户名满足条件才会去判断，url后面是请求头
             if(this.error_name == false){
                 let url='/usernames/'+this.username+'/count/';
                 axios.get(url, {
@@ -120,12 +122,12 @@ let vm = new Vue({
                             this.error_name_message='用户名已存在'
                             this.error_name = true;
                         }else{
-                            // 用户名不存在
+                            // 用户名不存在，可以进行
                             this.error_name = false;
                         }
                     })
                     .catch((error)=>{
-                        console.log(error)
+                        console.log(error.response)
                     })
 
             }
@@ -174,7 +176,7 @@ let vm = new Vue({
                             this.error_mobile = false;
                         }
                     }).catch((error) => {
-                    console.log(error)
+                    console.log(error.response)
                 })
             }
         },

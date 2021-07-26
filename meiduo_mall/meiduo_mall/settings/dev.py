@@ -29,7 +29,7 @@ SECRET_KEY = '(r(3it^rl!sw4rr^$wya$6!lwcq*o%fi3w+moz&4l77#f1ul@q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.meiduo.site']
 
 
 # Application definition
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'contents',
     # verifications可以不注册，因为不迁移和没有模板
     'verifications',
+    'oauth', # 第三方登录
 ]
 
 MIDDLEWARE = [
@@ -251,4 +252,19 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 
 # haystack分页时每页记录所对应的条数
 HAYSTACK_SEARCH_RESULTS_PER_PAGE = 5
+
+# 指定自定义用户认证的后端
+AUTHENTICATION_BACKENDS=['users.utils.UsernameMobileBackend']
+
+
+# 判断用户是否登录后，指定未登录用户重定向的地址
+LOGIN_URL='/login/'
+
+
+#  QQ登录的配置文件
+QQ_CLIENT_ID = '101518219'
+QQ_CLIENT_SECRET = '418d84ebdc7241efb79536886ae95224'
+QQ_REDIRECT_URI = 'http://www.meiduo.site:8000/oauth_callback'
+
+
 

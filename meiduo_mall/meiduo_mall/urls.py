@@ -27,4 +27,6 @@ urlpatterns = [
     url(r'^',include(('contents.urls','contents'))),
     # verfications,不需要做命名空间
     url(r'^',include('verifications.urls')),
+    # oauth
+    url(r'^',include('oauth.urls')),
 ]

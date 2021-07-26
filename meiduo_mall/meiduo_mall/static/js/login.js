@@ -47,6 +47,7 @@ let vm = new Vue({
                 responseType: 'json'
             })
                 .then(response => {
+                    //这个是直接进入某个连接
                     location.href = response.data.login_url;
                 })
                 .catch(error => {

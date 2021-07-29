@@ -29,7 +29,7 @@ SECRET_KEY = '(r(3it^rl!sw4rr^$wya$6!lwcq*o%fi3w+moz&4l77#f1ul@q'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.meiduo.site']
+ALLOWED_HOSTS = ['www.meiduo.site','127.0.0.1']
 
 
 # Application definition
@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # verifications可以不注册，因为不迁移和没有模板
     'verifications',
     'oauth', # 第三方登录
+    'areas',
 ]
 
 MIDDLEWARE = [
@@ -266,5 +267,18 @@ QQ_CLIENT_ID = '101518219'
 QQ_CLIENT_SECRET = '418d84ebdc7241efb79536886ae95224'
 QQ_REDIRECT_URI = 'http://www.meiduo.site:8000/oauth_callback'
 
+# 邮件参数
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # 指定邮件后端
+# EMAIL_HOST = 'smtp.yeah.net' # 发邮件主机
+EMAIL_HOST = 'smtp.qq.com' # 发邮件主机
+EMAIL_PORT = 25 # 发邮件端口
+# EMAIL_HOST_USER = 'zhangxu201709@yeah.net' # 授权的邮箱
+EMAIL_HOST_USER = '2931539701@qq.com' # 授权的邮箱
+# EMAIL_HOST_PASSWORD = 'ZCWEFKFCFCSZLVVF' # 邮箱授权时获得的密码，非注册登录密码
+EMAIL_HOST_PASSWORD = 'pkbsrklyudzqdfih' # 邮箱授权时获得的密码，非注册登录密码
+# EMAIL_FROM = '美多商城<zhangxu201709@yeah.net>' # 发件人抬头
+EMAIL_FROM = '美多商城<2931539701@qq.com>' # 发件人抬头
+
+EMAIL_VERIFY_URL='http://www.meiduo.site:8000/emails/verification/'
 
 

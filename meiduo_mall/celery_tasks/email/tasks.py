@@ -13,7 +13,7 @@ logger=logging.getLogger('django')
 # name:异步任务的别名
 # retry_backoff:异常自动重试的时间间隔，第n 次(retry_backoff*2^(n-1))s
 # max_retries:异常自动重试次数的上限
-@celery_app.task(bind=True,name="send_verify_email",retry_backoff=3)
+@celery_app.task(bind=True,name='send_verify_email',retry_backoff=3)
 def send_verify_email(self,email,verify_url):
     """定义发送邮件的任务"""
     # send_mail('标题','普通邮件的正文','发件人','收件人列表','富文本邮件正文html'),

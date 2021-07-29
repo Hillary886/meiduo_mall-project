@@ -1,5 +1,5 @@
 from django.conf import settings
-from itsdangerous import TimedSerializer as Serializer, BadData
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer, BadData
 
 from . import constants
 

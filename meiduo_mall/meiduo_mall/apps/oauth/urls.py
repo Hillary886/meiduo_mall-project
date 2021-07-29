@@ -6,4 +6,5 @@ urlpatterns=[
     url(r'^qq/login/$',views.QQAuthURLView.as_view()),
     #处理QQ登录回调
     url('^oauth_callback/$',views.QQAuthUserView.as_view())
+
 ]

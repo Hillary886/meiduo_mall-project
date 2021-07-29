@@ -12,4 +12,20 @@ urlpatterns = [
     url(r'^logout/$',views.LogoutView.as_view(),name='logout'),
     # 用户中心
     url(r'^info/$',views.UserInfoView.as_view(),name='info'),
+    # 添加邮箱
+    url(r'^emails/$',views.EmailView.as_view()),
+    # 验证邮箱
+    url(r'^emails/verification/$',views.VerifyEmailView.as_view()),
+    # 展示用户的地址
+    url(r'^addresses/$',views.AddressView.as_view(),name='address'),
+    # 新增用户的地址
+    url(r'^addresses/create/$', views.AddressCreateView.as_view()),
+    # 更新和删除地址
+    url(r'^addresses/(?P<address_id>\d+)/$',views.UpdateDestroyaddressView.as_view()),
+    # 设置默认的地址
+    url(r'addresses/(?P<address_id>\d+)/default/$',views.DefaultAddressView.as_view()),
+    # 更新地址的标题
+    url(r'addresses/(?P<address_id>\d+)/title/$',views.UpdateTitleAddressView.as_view()),
+    # 设置修改密码
+    url(r'password/$', views.ChangePasswordView.as_view(),name='password'),
 ]

@@ -1,16 +1,16 @@
 # Celery的入口文件
 from celery import Celery
 
-
 # 为celery使用django配置文件进行设置
 import os
+# print(os.getenv('DJANGO_SETTINGS_MODULE'))
 if not os.getenv('DJANGO_SETTINGS_MODULE'):
     os.environ['DJANGO_SETTINGS_MODULE'] = 'meiduo_mall.settings.dev'
 
 
-
 # 创建celery实例,这个celery的实例就是生产者，这个meiduo的名字可以传也可以不传
 celery_app=Celery("meiduo",broker='redis://192.168.206.134:6379/10')
+# celery_app=Celery("meiduo",broker='redis://127.0.0.1:6379/10')
 
 # 加载配置
 celery_app.config_from_object('celery_tasks.config')

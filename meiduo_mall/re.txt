@@ -1,0 +1,1 @@
+fdfs-client-py @ file:///C:/Users/HP/Desktop/meiduo_project/meiduo_mall/fdfs_client-py-master.zip

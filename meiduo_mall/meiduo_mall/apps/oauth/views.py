@@ -23,6 +23,11 @@ from users.models import User
 
 logger=logging.getLogger('django')
 
+
+def merge_cart_cookie_to_redis(request, user, response):
+    pass
+
+
 class QQAuthUserView(View):
     """处理QQ登录回调：oauth_callback"""
     def get(self,request):
@@ -51,7 +56,9 @@ class QQAuthUserView(View):
         except OAuthQQUser.DoesNotExist:
             # 如果openid没绑定美多商城用户
             access_token_openid=generate_access_token(openid)
-            context={'access_token_openid':access_token_openid}
+            context={
+                'access_token_openid':access_token_openid
+            }
             return render(request,'oauth_callback.html',context)
         else:
             # 如果openid已绑定美多商城用户:oauth_user.user表示从QQ登陆的模型类对象中找到对应的用户模型类对象
@@ -89,7 +96,7 @@ class QQAuthUserView(View):
             return render(request, 'oauth_callback.html', {'sms_code_errmsg': '无效的短信验证码'})
         if sms_code_client != sms_code_server.decode():
             return render(request, 'oauth_callback.html', {'sms_code_errmsg': '输入短信验证码有误'})
-        # 判断openid是否有效：openid使用itsdangerous签名只有600秒的有效期
+        # 判断openid是否有效：openid使用itsSerializer签名只有600秒的有效期
         # 判断openid是否有效：错误提示放在sms_code_errmsg位置
         openid = check_access_token(access_token)
         if not openid:
@@ -122,7 +129,7 @@ class QQAuthUserView(View):
 
         # 登录时用户名写入到cookie，有效期15天
         response.set_cookie('username', oauth_qq_user.user.username, max_age=3600 * 24 * 15)
-
+        response = merge_cart_cookie_to_redis(request=request, user=user, response=response)
         return response
 class QQAuthURLView(View):
     """提供qq登录扫码页面"""

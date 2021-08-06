@@ -58,8 +58,8 @@
             <ul class="goods_type_list clearfix">
                 {% for result in page %}
                     <li>
-                    <a href="detail.html"><img src="{{ result.object.default_image.url }}"></a>
-                    <h4><a href="detail.html">{{ result.object.name }}</a></h4>
+                    <a href="{{ url('goods:detail',args=(result.object.id,)) }}"><img src="{{ result.object.default_image.url }}"></a>
+                    <h4><a href="{{ url('goods:detail',args=(result.object.id,)) }}">{{ result.object.name }}</a></h4>
                     <div class="operate">
                         <span class="price">{{ result.object.price }}</span>
                         <span class="unit">台</span>

@@ -2825,7 +2825,7 @@ function updateChildComponent (
   );
 
   vm.$options._parentVnode = parentVnode;
-  vm.$vnode = parentVnode; // update vm's placeholder node without re-render
+  vm.$vnode = parentVnode; // update vm's placeholder node without re.txt-render
 
   if (vm._vnode) { // update child tree's parent
     vm._vnode.parent = parentVnode;
@@ -3130,7 +3130,7 @@ var Watcher = function Watcher (
 };
 
 /**
- * Evaluate the getter, and re-collect dependencies.
+ * Evaluate the getter, and re.txt-collect dependencies.
  */
 Watcher.prototype.get = function get () {
   pushTarget(this);
@@ -3344,7 +3344,7 @@ function initProps (vm, propsOptions) {
         if (vm.$parent && !isUpdatingChildComponent) {
           warn(
             "Avoid mutating a prop directly since the value will be " +
-            "overwritten whenever the parent component re-renders. " +
+            "overwritten whenever the parent component re.txt-renders. " +
             "Instead, use a data or computed property based on the prop's " +
             "value. Prop being mutated: \"" + key + "\"",
             vm
@@ -3635,7 +3635,7 @@ function initInjections (vm) {
         defineReactive(vm, key, result[key], function () {
           warn(
             "Avoid mutating an injected value directly since the changes will be " +
-            "overwritten whenever the provided component re-renders. " +
+            "overwritten whenever the provided component re.txt-renders. " +
             "injection being mutated: \"" + key + "\"",
             vm
           );
@@ -4455,7 +4455,7 @@ function applyNS (vnode, ns, force) {
 }
 
 // ref #5318
-// necessary to ensure parent re-render when deep bindings like :style and
+// necessary to ensure parent re.txt-render when deep bindings like :style and
 // :class are used on slot nodes
 function registerDeepBindings (data) {
   if (isObject(data.style)) {
@@ -5896,7 +5896,7 @@ function createPatchFunction (backend) {
     // reuse element for static trees.
     // note we only do this if the vnode is cloned -
     // if the new node is not cloned it means the render functions have been
-    // reset by the hot-reload-api and we need to do a proper re-render.
+    // reset by the hot-reload-api and we need to do a proper re.txt-render.
     if (isTrue(vnode.isStatic) &&
       isTrue(oldVnode.isStatic) &&
       vnode.key === oldVnode.key &&
@@ -6142,7 +6142,7 @@ function createPatchFunction (backend) {
               // e.g. for directives that uses the "inserted" hook.
               var insert = ancestor.data.hook.insert;
               if (insert.merged) {
-                // start at index 1 to avoid re-invoking component mounted hook
+                // start at index 1 to avoid re.txt-invoking component mounted hook
                 for (var i$2 = 1; i$2 < insert.fns.length; i$2++) {
                   insert.fns[i$2]();
                 }
@@ -8791,7 +8791,7 @@ function parseHTML (html, options) {
   var last, lastTag;
   while (html) {
     last = html;
-    // Make sure we're not in a plaintext content element like scripts/style
+    // Make sure we're.txt not in a plaintext content element like scripts/style
     if (!lastTag || !isPlainTextElement(lastTag)) {
       var textEnd = html.indexOf('<');
       if (textEnd === 0) {
@@ -9827,7 +9827,7 @@ var genStaticKeysCached = cached(genStaticKeys$1);
  * Once we detect these sub-trees, we can:
  *
  * 1. Hoist them into constants, so that we no longer need to
- *    create fresh nodes for them on each re-render;
+ *    create fresh nodes for them on each re.txt-render;
  * 2. Completely skip them in the patching process.
  */
 function optimize (root, options) {

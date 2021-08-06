@@ -31,4 +31,14 @@ urlpatterns = [
     url(r'^',include('oauth.urls')),
     # areas
     url(r'^',include('areas.urls')),
+    # goods
+    url(r'^',include(('goods.urls','goods'))),
+    # haystack
+    url(r'^search/', include('haystack.urls')),
+    # carts
+    url(r'^',include(('carts.urls','carts'))),
+    # orders
+    url(r'^',include(('orders.urls','orders'))),
+    # payment
+    url(r'^',include(('payment.urls','payment'))),
 ]
